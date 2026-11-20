@@ -140,11 +140,9 @@ set "LUA=%~dp0lua\"
 set "LISTS=%~dp0files\"
 cd /d %BIN%
 start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80,443,2053,2083,2087,2096,8443,%GameFilterTCP% --wf-udp-out=443,19294-19344,50000-50100,%GameFilterUDP% ^
-
 --lua-init=@"%LUA%blobs.lua" ^
 --lua-init=@"%LUA%zapret-lib.lua" ^
 --lua-init=@"%LUA%zapret-antidpi.lua" ^
-
 --name="Domain Bypass Quic" ^
 --filter-udp=443 ^
 --hostlist="%LISTS%list-general.txt" ^
@@ -153,14 +151,12 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --payload=quic_initial ^
 --lua-desync=fake:blob=quic_google:repeats=11 ^
 --new ^
-
 --name="Discord Voice" ^
 --filter-udp=19294-19344,50000-50100 ^
 --filter-l7=discord,stun ^
 --payload=discord_ip_discovery,stun ^
 --lua-desync=fake:blob=ACTIVE_DISCORD:repeats=5 ^
 --new ^
-
 --name="Discord Media" ^
 --filter-tcp=2053,2083,2087,2096,8443 ^
 --hostlist-domains=discord.media ^
@@ -168,14 +164,12 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --lua-desync=fake:blob=tls_google:tcp_ts=-600000:repeats=7 ^
 --lua-desync=multisplit:pos=1:seqovl=681:seqovl_pattern=tls_google ^
 --new ^
-
 --name="Youtube" ^
 --filter-tcp=443 ^
 --hostlist="%LISTS%list-google.txt" ^
 --payload=tls_client_hello ^
 --lua-desync=hostfakesplit:host=www.google.com:tcp_ts=-600000 ^
 --new ^
-
 --name="Domain Bypass TLS" ^
 --filter-tcp=80,443 ^
 --hostlist="%LISTS%list-general.txt" ^
@@ -189,7 +183,6 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --lua-desync=fake:blob=tls_sochi_park:tcp_ts=-600000:repeats=5 ^
 --lua-desync=hostfakesplit:host=mail.ru:tcp_ts=-600000:repeats=5 ^
 --new ^
-
 --name="IP Bypass Quic" ^
 --filter-udp=443 ^
 --ipset="%LISTS%ipset-general.txt" ^
@@ -198,7 +191,6 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --payload=quic_initial ^
 --lua-desync=fake:blob=quic_google:repeats=11 ^
 --new ^
-
 --name="IP Bypass TLS" ^
 --filter-tcp=80,443,8443 ^
 --ipset="%LISTS%ipset-general.txt" ^
@@ -212,7 +204,6 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --lua-desync=fake:blob=tls_sochi_park:tcp_ts=-600000:repeats=5 ^
 --lua-desync=hostfakesplit:host=mail.ru:tcp_ts=-600000:repeats=5 ^
 --new ^
-
 --name="GameFilter Bypass TCP" ^
 --filter-tcp=%GameFilterTCP% ^
 --ipset="%LISTS%ipset-general.txt" ^
@@ -229,7 +220,6 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --lua-desync=fake:blob=tls_sochi_park:tcp_ts=-600000:repeats=5:payload=all ^
 --lua-desync=fake:blob=stun2:tcp_ts=-600000:repeats=5:payload=all ^
 --new ^
-
 --name="GameFilter Bypass UDP" ^
 --filter-udp=%GameFilterUDP% ^
 --ipset="%LISTS%ipset-general.txt" ^
@@ -237,5 +227,4 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --out-range=-n4 ^
 --payload=all ^
 --lua-desync=fake:blob=ACTIVE_GAME:repeats=10:payload=all
-
 exit /b
