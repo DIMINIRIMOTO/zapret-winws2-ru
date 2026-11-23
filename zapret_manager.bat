@@ -74,7 +74,7 @@ goto menu
 setlocal
 ::(*_*)::
 set "ZAPRET_ACTIVE=0"
-tasklist /fi "imagename eq winws.exe2" 2>nul | find /i "winws.exe2" >nul
+tasklist /fi "imagename eq winws2.exe" 2>nul | find /i "winws2.exe" >nul
 if !errorlevel! equ 0 set "ZAPRET_ACTIVE=1"
 
 ::(*_*)::
