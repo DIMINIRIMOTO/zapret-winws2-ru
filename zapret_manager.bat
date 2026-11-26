@@ -229,7 +229,7 @@ for /f "delims=" %%C in ('curl.exe -q --noproxy * -I -s -m 4 --connect-timeout 2
 if not "!TLS13_CODE!"=="000" (
     set "TLS13_RES=TLS1.3:OK"
 ) else (
-    echo !TLS13_ERR! | findstr /i /c:"not supported" /c:"does not support" /c:"unsupported" /c:"schannel" >nul
+    echo !TLS13_ERR! | findstr /i /c:"not supported" /c:"does not support" /c:"unsupported" >nul
     if !errorlevel! equ 0 (
         set "TLS13_RES=TLS1.3:UNSUP"
     ) else (
