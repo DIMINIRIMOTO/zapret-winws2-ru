@@ -64,7 +64,7 @@ set ARGS=^
 --name=\"TCP Bypass\" ^
 --filter-l3=ipv4 ^
 --filter-tcp=80,443,2053,2083,2087,2096,8443 ^
---ipset-exclude=\"%LISTS%ipset-exclude.txt\" ^
+--import=i ^
 --lua-desync=syndata ^
 --payload=tls_client_hello,http_req ^
 --lua-desync=multidisorder ^
@@ -133,7 +133,7 @@ start "zapret: http,https,quic" /min "%BIN%winws2.exe" --debug=0 --wf-tcp-out=80
 --name="TCP Bypass" ^
 --filter-l3=ipv4 ^
 --filter-tcp=80,443,2053,2083,2087,2096,8443 ^
---ipset-exclude="%LISTS%ipset-exclude.txt" ^
+--import=i ^
 --lua-desync=syndata ^
 --payload=tls_client_hello,http_req ^
 --lua-desync=multidisorder ^
